@@ -1,0 +1,249 @@
+<html><head>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
+
+    <base href="#" /><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>اطلاعات اعضای هیات علمی دانشگاه های ایران</title>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Vazirmatn', sans-serif;
+    }
+    
+    body {
+        direction: rtl;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .container {
+        width: 90%;
+        max-width: 800px;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    }
+    
+    h1 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 2rem;
+        font-size: 2rem;
+    }
+    
+    .menu {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+    
+    .menu-item {
+        background: #fff;
+        padding: 1.5rem;
+        border-radius: 15px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        text-decoration: none;
+        color: #2c3e50;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .menu-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .menu-item svg {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 1rem;
+    }
+    
+    .menu-item h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .menu-item p {
+        font-size: 0.9rem;
+        color: #666;
+    }
+    
+    .login-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+    
+    .login-content {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        width: 90%;
+        max-width: 400px;
+    }
+    
+    .login-content input {
+        width: 100%;
+        padding: 0.5rem;
+        margin: 0.5rem 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        direction: ltr;
+    }
+    
+    .login-content button {
+        width: 100%;
+        padding: 0.5rem;
+        background: #2c3e50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+    
+    @media (max-width: 600px) {
+        .container {
+            padding: 1rem;
+        }
+        
+        h1 {
+            font-size: 1.5rem;
+        }
+        
+        .menu-item {
+            padding: 1rem;
+        }
+    }
+    </style>
+    </head>
+    <body>
+    <div class="container">
+        <h1>سامانه اطلاعات اعضای هیات علمی دانشگاه های دولتی ایران</h1>
+        
+        <div class="menu">
+            <a href="templates/list.html" class="menu-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#2c3e50" stroke-width="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+                <h3>دانشگاه ها</h3>
+                <p>فهرست دانشگاه های دولتی ایران</p>
+            </a>
+            
+            <a href="templates/search.html" class="menu-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#2c3e50" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="M21 21l-4.35-4.35"/>
+                </svg>
+                <h3>جستجو</h3>
+                <p>جستجوی اساتید و اعضای هیات علمی</p>
+            </a>
+            
+            <a href="templates/about.html" class="menu-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#2c3e50" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 16v-4M12 8h.01"/>
+                </svg>
+                <h3>درباره ما</h3>
+                <p>اطلاعات تماس و درباره سامانه</p>
+            </a>
+            
+            <div class="menu-item" onclick="showLogin()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#2c3e50" stroke-width="2">
+                    <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+                <h3>ویرایش</h3>
+                <p>بروزرسانی و ویرایش اطلاعات</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="login-modal" id="loginModal">
+        <div class="login-content">
+            <h3>ورود به سیستم</h3>
+            <input type="text" id="username" placeholder="نام کاربری">
+            <input type="password" id="password" placeholder="رمز عبور">
+            <button onclick="checkLogin()">ورود</button>
+        </div>
+    </div>
+    
+    <script>
+    function showLogin() {
+        document.getElementById('loginModal').style.display = 'flex';
+    }
+    
+    function checkLogin() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        
+        if(username === 'ketabbase' && password === 'dmM212#') {
+            window.location.href = 'templates/edit.html';
+        } else {
+            alert('نام کاربری یا رمز عبور اشتباه است');
+        }
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuItems = document.querySelectorAll('.menu-item');
+        
+        menuItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                const ripple = document.createElement('div');
+                ripple.classList.add('ripple');
+                
+                const rect = item.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                
+                item.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+        
+        window.onclick = function(event) {
+            if (event.target === document.getElementById('loginModal')) {
+                document.getElementById('loginModal').style.display = 'none';
+            }
+        }
+    });
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('service-worker.js')
+            .then(registration => {
+              console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch(error => {
+              console.log('Service Worker registration failed:', error);
+            });
+        }
+      </script>
+      
+    </body></html>

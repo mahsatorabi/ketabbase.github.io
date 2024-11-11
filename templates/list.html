@@ -1,0 +1,465 @@
+<html><head>
+    <base href="#list">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فهرست دانشگاه های دارای رشته علم اطلاعات و دانش شناسی</title>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Vazirmatn', sans-serif;
+    }
+    
+    body {
+        direction: rtl;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+        padding: 2rem;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    }
+    
+    h1 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 2rem;
+        font-size: 1.8rem;
+    }
+    
+    .university-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+    
+    .university-card {
+        background: #fff;
+        border-radius: 15px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .university-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .university-name {
+        color: #2c3e50;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        text-decoration: none;
+        display: block;
+    }
+    
+    .university-name:hover {
+        color: #3498db;
+    }
+    
+    .faculty-list {
+        display: none;
+        margin-top: 1rem;
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 10px;
+    }
+    
+    .faculty-member {
+        padding: 0.5rem;
+        border-bottom: 1px solid #eee;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+    
+    .faculty-member:hover {
+        color: #3498db;
+    }
+    
+    .faculty-member:last-child {
+        border-bottom: none;
+    }
+    
+    .academic-rank {
+        color: #666;
+        font-size: 0.9rem;
+        margin-right: 0.5rem;
+    }
+    
+    .university-stats {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+        color: #666;
+    }
+    
+    .university-stats svg {
+        width: 20px;
+        height: 20px;
+        margin-left: 0.5rem;
+    }
+    
+    .degrees {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid #eee;
+    }
+    
+    .degree-tag {
+        display: inline-block;
+        background: #f0f4f8;
+        padding: 0.3rem 0.8rem;
+        border-radius: 15px;
+        font-size: 0.9rem;
+        margin: 0.2rem;
+        color: #2c3e50;
+    }
+    
+    .back-button {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        background: #2c3e50;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        transition: background 0.3s ease;
+    }
+    
+    .back-button:hover {
+        background: #34495e;
+    }
+    
+    .back-button svg {
+        width: 20px;
+        height: 20px;
+        margin-left: 0.5rem;
+    }
+    </style>
+    </head>
+    <body>
+    <div class="container">
+        <a href="../main.html" class="back-button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            بازگشت به صفحه اصلی
+        </a>
+    
+        <h1>فهرست دانشگاه های دارای رشته علم اطلاعات و دانش شناسی</h1>
+        
+        <div class="university-grid">
+            <div class="university-card">
+                <h2 class="university-name" onclick="toggleFacultyList('tehran')">دانشگاه تهران</h2>
+                <div class="faculty-list" id="tehran">
+                    <div class="faculty-member" onclick="showProfessorDetails('hosseini')">دکتر علی حسینی <span class="academic-rank">استاد تمام</span></div>
+                    <div class="faculty-member" onclick="showProfessorDetails('mohammadi')">دکتر فاطمه محمدی <span class="academic-rank">دانشیار</span></div>
+                    <div class="faculty-member" onclick="showProfessorDetails('karimi')">دکتر محمد کریمی <span class="academic-rank">استادیار</span></div>
+                    <div class="faculty-member" onclick="showProfessorDetails('rezaei')">دکتر زهرا رضایی <span class="academic-rank">دانشیار</span></div>
+                </div>
+                <div class="university-stats">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    تعداد اعضای هیات علمی: 12 نفر
+                </div>
+                <div class="degrees">
+                    <div class="degree-tag">کارشناسی</div>
+                    <div class="degree-tag">کارشناسی ارشد - مدیریت اطلاعات</div>
+                    <div class="degree-tag">کارشناسی ارشد - علم سنجی</div>
+                    <div class="degree-tag">دکتری - بازیابی اطلاعات و دانش</div>
+                </div>
+            </div>
+    
+            <div class="university-card">
+                <h2 class="university-name" onclick="toggleFacultyList('ferdowsi')">دانشگاه فردوسی مشهد</h2>
+                <div class="faculty-list" id="ferdowsi">
+                    <div class="faculty-member" onclick="showProfessorDetails('yousefi')">دکتر سارا یوسفی <span class="academic-rank">استاد تمام</span></div>
+                    <div class="faculty-member" onclick="showProfessorDetails('alizadeh')">دکتر امیر علیزاده <span class="academic-rank">دانشیار</span></div>
+                    <div class="faculty-member" onclick="showProfessorDetails('sharifi')">دکتر نرگس شریفی <span class="academic-rank">استادیار</span></div>
+                </div>
+                <div class="university-stats">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    تعداد اعضای هیات علمی: 8 نفر
+                </div>
+                <div class="degrees">
+                    <div class="degree-tag">کارشناسی</div>
+                    <div class="degree-tag">کارشناسی ارشد - مدیریت اطلاعات</div>
+                    <div class="degree-tag">دکتری - بازیابی اطلاعات و دانش</div>
+                </div>
+            </div>
+    
+            <div class="university-card">
+                <h2 class="university-name" onclick="toggleFacultyList('beheshti')">دانشگاه شهید بهشتی</h2>
+                <div class="faculty-list" id="beheshti">
+                    <div class="faculty-member" onclick="showProfessorDetails('nikkhah')">دکتر حسن نیکخواه <span class="academic-rank">استاد تمام</span></div>
+                    <div class="faculty-member" onclick="showProfessorDetails('soltani')">دکتر فاطمه سلطانی <span class="academic-rank">دانشیار</span></div>
+                    <div class="faculty-member" onclick="showProfessorDetails('ghasemi')">دکتر مهدی قاسمی <span class="academic-rank">استادیار</span></div>
+                </div>
+                <div class="university-stats">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    تعداد اعضای هیات علمی: 7 نفر
+                </div>
+                <div class="degrees">
+                    <div class="degree-tag">کارشناسی</div>
+                    <div class="degree-tag">کارشناسی ارشد - مدیریت اطلاعات</div>
+                    <div class="degree-tag">دکتری - مدیریت اطلاعات</div>
+                </div>
+            </div>
+    
+            <div class="university-card">
+                <h2 class="university-name" onclick="toggleFacultyList('tabatabaii')">دانشگاه علامه طباطبایی</h2>
+                <div class="faculty-list" id="tabatabaii">
+                    <div class="faculty-member" onclick="showProfessorDetails('badiyi')">دکتر ندا بدیعی <span class="academic-rank">استاد تمام</span></div>
+                    <div class="faculty-member" onclick="showProfessorDetails('asghari')">دکتر علی اصغری <span class="academic-rank">دانشیار</span></div>
+                </div>
+                <div class="university-stats">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    تعداد اعضای هیات علمی: 6 نفر
+                </div>
+                <div class="degrees">
+                    <div class="degree-tag">کارشناسی</div>
+                    <div class="degree-tag">کارشناسی ارشد - علم سنجی</div>
+                </div>
+            </div>
+    
+            <div class="university-card">
+                <h2 class="university-name" onclick="toggleFacultyList('alzahra')">دانشگاه الزهرا</h2>
+                <div class="faculty-list" id="alzahra">
+                    <div class="faculty-member" onclick="showProfessorDetails('rad')">دکتر مریم راد <span class="academic-rank">استادیار</span></div>
+                    <div class="faculty-member" onclick="showProfessorDetails('ghalebi')">دکتر سارا قلبی <span class="academic-rank">استادیار</span></div>
+                </div>
+                <div class="university-stats">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    تعداد اعضای هیات علمی: 5 نفر
+                </div>
+                <div class="degrees">
+                    <div class="degree-tag">کارشناسی</div>
+                    <div class="degree-tag">کارشناسی ارشد - مطالعات کتابخانه های عمومی</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    function toggleFacultyList(universityId) {
+        const facultyList = document.getElementById(universityId);
+        const currentDisplay = facultyList.style.display;
+        facultyList.style.display = currentDisplay === 'block' ? 'none' : 'block';
+    }
+    
+    function showProfessorDetails(professorId) {
+        const professorData = {
+            'hosseini': {
+                name: 'دکتر علی حسینی',
+                rank: 'استاد تمام',
+                education: ['دکتری علم اطلاعات - دانشگاه تهران', 'کارشناسی ارشد کتابداری - دانشگاه شیراز', 'کارشناسی کتابداری - دانشگاه اصفهان'],
+                email: 'a.hosseini@ut.ac.ir',
+                googleScholar: 'https://scholar.google.com/citations?user=123456',
+                orcid: 'https://orcid.org/0000-0002-1234-5678',
+                website: 'https://profile.ut.ac.ir/~ahosseini',
+                researchInterests: ['بازیابی اطلاعات', 'داده کاوی', 'علم سنجی', 'یادگیری ماشین']
+            },
+            'mohammadi': {
+                name: 'دکتر فاطمه محمدی',
+                rank: 'دانشیار',
+                education: ['دکتری علم اطلاعات - دانشگاه تربیت مدرس', 'کارشناسی ارشد کتابداری - دانشگاه تهران', 'کارشناسی کتابداری - دانشگاه الزهرا'],
+                email: 'f.mohammadi@ut.ac.ir',
+                googleScholar: 'https://scholar.google.com/citations?user=789012',
+                orcid: 'https://orcid.org/0000-0002-8901-2345',
+                website: 'https://profile.ut.ac.ir/~fmohammadi',
+                researchInterests: ['مدیریت دانش', 'کتابخانه های دیجیتال', 'وب معنایی']
+            },
+            'karimi': {
+                name: 'دکتر محمد کریمی',
+                rank: 'استادیار',
+                education: ['دکتری علم اطلاعات - دانشگاه تربیت مدرس', 'کارشناسی ارشد - کتابداری', 'کارشناسی - علم اطلاعات'],
+                email: 'm.karimi@ut.ac.ir',
+                googleScholar: 'https://scholar.google.com/citations?user=234567',
+                orcid: 'https://orcid.org/0000-0002-3456-7890',
+                website: 'https://profile.ut.ac.ir/~mkarimi',
+                researchInterests: ['بازیابی اطلاعات', 'کتابخانه الکترونیکی', 'تحلیل داده']
+            },
+            'rezaei': {
+                name: 'دکتر زهرا رضایی',
+                rank: 'دانشیار',
+                education: ['دکتری علم اطلاعات - دانشگاه الزهرا', 'کارشناسی ارشد - فناوری اطلاعات', 'کارشناسی - علم اطلاعات'],
+                email: 'z.rezaei@ut.ac.ir',
+                googleScholar: 'https://scholar.google.com/citations?user=345678',
+                orcid: 'https://orcid.org/0000-0002-4567-8901',
+                website: 'https://profile.ut.ac.ir/~zrezaei',
+                researchInterests: ['تحلیل اطلاعات', 'کتابخانه های دیجیتال', 'سیاست های اطلاعاتی']
+            },
+            'yousefi': {
+                name: 'دکتر سارا یوسفی',
+                rank: 'استاد تمام',
+                education: ['دکتری علم اطلاعات - دانشگاه تهران', 'کارشناسی ارشد کتابداری - دانشگاه فردوسی', 'کارشناسی کتابداری - دانشگاه فردوسی'],
+                email: 's.yousefi@um.ac.ir',
+                googleScholar: 'https://scholar.google.com/citations?user=567890',
+                orcid: 'https://orcid.org/0000-0002-5678-9012',
+                website: 'https://profile.um.ac.ir/~syousefi',
+                researchInterests: ['مدیریت دانش', 'علم سنجی', 'شبکه های اجتماعی علمی']
+            },
+            'alizadeh': {
+                name: 'دکتر امیر علیزاده',
+                rank: 'دانشیار',
+                education: ['دکتری علم اطلاعات - دانشگاه شهید بهشتی', 'کارشناسی ارشد کتابداری - دانشگاه تهران', 'کارشناسی کتابداری - دانشگاه فردوسی'],
+                email: 'a.alizadeh@um.ac.ir',
+                googleScholar: 'https://scholar.google.com/citations?user=678901',
+                orcid: 'https://orcid.org/0000-0002-6789-0123',
+                website: 'https://profile.um.ac.ir/~aalizadeh',
+                researchInterests: ['بازیابی اطلاعات', 'پردازش زبان طبیعی', 'داده کاوی']
+            },
+            'sharifi': {
+                name: 'دکتر نرگس شریفی',
+                rank: 'استادیار',
+                education: ['دکتری علم اطلاعات - دانشگاه تربیت مدرس', 'کارشناسی ارشد کتابداری - دانشگاه فردوسی', 'کارشناسی کتابداری - دانشگاه بیرجند'],
+                email: 'n.sharifi@um.ac.ir',
+                googleScholar: 'https://scholar.google.com/citations?user=789012',
+                orcid: 'https://orcid.org/0000-0002-7890-1234',
+                website: 'https://profile.um.ac.ir/~nsharifi',
+                researchInterests: ['کتابخانه های دیجیتال', 'سواد اطلاعاتی', 'آموزش مجازی']
+            },
+            'nikkhah': {
+                name: 'دکتر حسن نیکخواه',
+                rank: 'استاد تمام',
+                education: ['دکتری علم اطلاعات - دانشگاه تهران', 'کارشناسی ارشد کتابداری - دانشگاه شهید بهشتی', 'کارشناسی کتابداری - دانشگاه علامه طباطبایی'],
+                email: 'h.nikkhah@sbu.ac.ir',
+                googleScholar: 'https://scholar.google.com/citations?user=890123',
+                orcid: 'https://orcid.org/0000-0002-8901-2345',
+                website: 'https://profile.sbu.ac.ir/~hnikkhah',
+                researchInterests: ['مدیریت اطلاعات', 'هوش مصنوعی', 'تحلیل محتوا']
+            },
+            // Other professor data can be added similarly
+        };
+    
+        const professor = professorData[professorId];
+        if (!professor) return;
+    
+        const detailsWindow = window.open('', '_blank');
+        detailsWindow.document.write(`
+            <html dir="rtl">
+            <head>
+                <meta charset="UTF-8">
+                <title>${professor.name}</title>
+                <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
+                    body {
+                        font-family: 'Vazirmatn', sans-serif;
+                        margin: 0;
+                        padding: 2rem;
+                        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                        min-height: 100vh;
+                    }
+                    .container {
+                        max-width: 800px;
+                        margin: 0 auto;
+                        background: white;
+                        padding: 2rem;
+                        border-radius: 20px;
+                        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+                    }
+                    h1 {
+                        color: #2c3e50;
+                        margin-bottom: 1rem;
+                    }
+                    .info-section {
+                        margin-bottom: 1.5rem;
+                    }
+                    .info-section h2 {
+                        color: #34495e;
+                        font-size: 1.2rem;
+                        margin-bottom: 0.5rem;
+                    }
+                    .info-item {
+                        padding: 0.5rem 0;
+                    }
+                    .research-interests {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 0.5rem;
+                    }
+                    .interest-tag {
+                        background: #f0f4f8;
+                        padding: 0.3rem 0.8rem;
+                        border-radius: 15px;
+                        font-size: 0.9rem;
+                    }
+                    a {
+                        color: #3498db;
+                        text-decoration: none;
+                    }
+                    a:hover {
+                        text-decoration: underline;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <h1>${professor.name}</h1>
+                    <div class="info-section">
+                        <h2>مرتبه علمی</h2>
+                        <div class="info-item">${professor.rank}</div>
+                    </div>
+                    <div class="info-section">
+                        <h2>تحصیلات</h2>
+                        ${professor.education.map(edu => `<div class="info-item">${edu}</div>`).join('')}
+                    </div>
+                    <div class="info-section">
+                        <h2>اطلاعات تماس و پروفایل</h2>
+                        <div class="info-item">ایمیل: <a href="mailto:${professor.email}">${professor.email}</a></div>
+                        <div class="info-item">گوگل اسکالر: <a href="${professor.googleScholar}" target="_blank">مشاهده پروفایل</a></div>
+                        <div class="info-item">ORCID: <a href="${professor.orcid}" target="_blank">مشاهده پروفایل</a></div>
+                        <div class="info-item">وبسایت شخصی: <a href="${professor.website}" target="_blank">مشاهده وبسایت</a></div>
+                    </div>
+                    <div class="info-section">
+                        <h2>حوزه های پژوهشی</h2>
+                        <div class="research-interests">
+                            ${professor.researchInterests.map(interest => `<div class="interest-tag">${interest}</div>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            </body>
+            </html>
+        `);
+        detailsWindow.document.close();
+    }
+    </script>
+    </body></html>

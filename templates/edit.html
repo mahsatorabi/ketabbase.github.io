@@ -1,0 +1,410 @@
+<html><head>
+    <base href="#edit">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ویرایش اطلاعات - سامانه اعضای هیات علمی</title>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Vazirmatn', sans-serif;
+    }
+    
+    body {
+        direction: rtl;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+    }
+    
+    .container {
+        width: 90%;
+        max-width: 800px;
+        margin: 2rem auto;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    }
+    
+    h1 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 2rem;
+        font-size: 2rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #2c3e50;
+        font-weight: bold;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 0.8rem;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+    }
+    
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    select:focus,
+    textarea:focus {
+        border-color: #3498db;
+        outline: none;
+    }
+    
+    .file-upload {
+        border: 2px dashed #ddd;
+        padding: 2rem;
+        text-align: center;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: border-color 0.3s ease;
+    }
+    
+    .file-upload:hover {
+        border-color: #3498db;
+    }
+    
+    .file-upload svg {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 1rem;
+    }
+    
+    .btn {
+        background: #3498db;
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background 0.3s ease;
+        width: 100%;
+        margin-top: 1rem;
+    }
+    
+    .btn:hover {
+        background: #2980b9;
+    }
+    
+    .error {
+        color: #e74c3c;
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+    }
+    
+    .success {
+        color: #27ae60;
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+    }
+    
+    .research-fields {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
+    
+    .research-field {
+        background: #e1e8ed;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+    }
+    
+    .back-btn {
+        background: #95a5a6;
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background 0.3s ease;
+        width: 100%;
+        margin-top: 1rem;
+    }
+    
+    .back-btn:hover {
+        background: #7f8c8d;
+    }
+    
+    .btn-group {
+        display: flex;
+        gap: 1rem;
+    }
+    
+    .btn-group .btn,
+    .btn-group .back-btn {
+        width: 50%;
+    }
+    </style>
+    </head>
+    <body>
+    <div class="container">
+        <h1>ویرایش اطلاعات پروفایل</h1>
+        
+        <form id="profile-form">
+            <div class="form-group">
+                <label for="name">نام و نام خانوادگی *</label>
+                <input type="text" id="name" name="name" required placeholder="نام و نام خانوادگی خود را وارد کنید">
+            </div>
+    
+            <div class="form-group">
+                <label for="rank">مرتبه علمی *</label>
+                <select id="rank" name="rank" required>
+                    <option value="">انتخاب کنید</option>
+                    <option value="استاد">استاد</option>
+                    <option value="دانشیار">دانشیار</option>
+                    <option value="استادیار">استادیار</option>
+                    <option value="مربی">مربی</option>
+                </select>
+            </div>
+    
+            <div class="form-group">
+                <label for="university">دانشگاه محل خدمت *</label>
+                <select id="university" name="university" required>
+                    <option value="">انتخاب کنید</option>
+                    <option value="تهران">دانشگاه تهران</option>
+                    <option value="شهیدبهشتی">دانشگاه شهید بهشتی</option>
+                    <option value="علامه">دانشگاه علامه طباطبایی</option>
+                    <option value="فردوسی">دانشگاه فردوسی مشهد</option>
+                    <option value="اصفهان">دانشگاه اصفهان</option>
+                    <option value="شیراز">دانشگاه شیراز</option>
+                    <option value="الزهرا">دانشگاه الزهرا</option>
+                    <option value="خوارزمی">دانشگاه خوارزمی</option>
+                </select>
+            </div>
+    
+            <div class="form-group">
+                <label for="file-input">تصویر پروفایل</label>
+                <div class="file-upload" id="dropzone">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                        <polyline points="17 8 12 3 7 8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                    <p>تصویر خود را اینجا رها کنید یا کلیک کنید</p>
+                    <input type="file" id="file-input" name="profile_image" accept="image/*">
+                    <div id="preview"></div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="email">آدرس ایمیل *</label>
+                <input type="email" id="email" name="email" required placeholder="example@university.ac.ir">
+            </div>
+    
+            <div class="form-group">
+                <label for="education">مقاطع تحصیلی *</label>
+                <textarea id="education" name="education" required placeholder="مقاطع تحصیلی و دانشگاه های محل تحصیل را وارد کنید"></textarea>
+            </div>
+    
+            <div class="form-group">
+                <label for="orcid">شناسه ORCID</label>
+                <input type="text" id="orcid" name="orcid" pattern="^\d{4}-\d{4}-\d{4}-\d{4}$" placeholder="0000-0000-0000-0000">
+            </div>
+    
+            <div class="form-group">
+                <label for="scholar">پروفایل Google Scholar</label>
+                <input type="url" id="scholar" name="scholar" placeholder="https://scholar.google.com/citations?user=...">
+            </div>
+    
+            <div class="form-group">
+                <label for="research">حوزه های پژوهشی *</label>
+                <textarea id="research" name="research" required placeholder="حوزه های پژوهشی خود را وارد کنید (با کاما جدا کنید)"></textarea>
+                <div class="research-fields" id="research-tags"></div>
+            </div>
+    
+            <div class="btn-group">
+                <button type="button" class="back-btn" onclick="window.location.href='../main.html'">بازگشت به صفحه اصلی</button>
+                <button type="submit" class="btn" id="submit">ذخیره اطلاعات</button>
+            </div>
+        </form>
+    
+        <button class="btn" style="margin-top: 20px;" onclick="downloadDatabase()">دانلود پایگاه داده</button>
+    </div>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('profile-form');
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('file-input');
+        const preview = document.getElementById('preview');
+        const researchInput = document.getElementById('research');
+        const researchTags = document.getElementById('research-tags');
+        let uploadedImageUrl = null;
+        
+        // Initialize IndexedDB
+        let db;
+        const dbName = "facultyMembersDB";
+        const request = indexedDB.open(dbName, 1);
+    
+        request.onerror = (event) => {
+            console.error("Database error:", event.target.error);
+        };
+    
+        request.onupgradeneeded = (event) => {
+            db = event.target.result;
+            if (!db.objectStoreNames.contains('profiles')) {
+                db.createObjectStore('profiles', { keyPath: 'id', autoIncrement: true });
+            }
+        };
+    
+        request.onsuccess = (event) => {
+            db = event.target.result;
+        };
+    
+        // File upload handling
+        dropzone.addEventListener('click', () => fileInput.click());
+        
+        dropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropzone.style.borderColor = '#3498db';
+        });
+    
+        dropzone.addEventListener('dragleave', () => {
+            dropzone.style.borderColor = '#ddd';
+        });
+    
+        dropzone.addEventListener('drop', async (e) => {
+            e.preventDefault();
+            dropzone.style.borderColor = '#ddd';
+            handleFile(e.dataTransfer.files[0]);
+        });
+    
+        fileInput.addEventListener('change', (e) => {
+            handleFile(e.target.files[0]);
+        });
+    
+        async function handleFile(file) {
+            if (file && file.type.startsWith('image/')) {
+                try {
+                    uploadedImageUrl = await window.websim.upload(file);
+                    preview.innerHTML = `<img src="${uploadedImageUrl}" alt="تصویر پروفایل" style="max-width: 200px; margin-top: 10px;">`;
+                } catch (error) {
+                    console.error('Upload error:', error);
+                    alert('خطا در آپلود تصویر');
+                }
+            }
+        }
+    
+        // Research fields tags
+        researchInput.addEventListener('input', () => {
+            const fields = researchInput.value.split(',').map(field => field.trim()).filter(field => field);
+            researchTags.innerHTML = fields.map(field => 
+                `<span class="research-field">${field}</span>`
+            ).join('');
+        });
+    
+        // Form submission
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+    
+            const formData = {
+                name: form.name.value,
+                rank: form.rank.value,
+                university: form.university.value,
+                profile_image: uploadedImageUrl,
+                email: form.email.value,
+                education: form.education.value,
+                orcid: form.orcid.value,
+                scholar: form.scholar.value,
+                research: form.research.value.split(',').map(field => field.trim()).filter(field => field),
+                timestamp: new Date().toISOString()
+            };
+    
+            try {
+                const transaction = db.transaction(['profiles'], 'readwrite');
+                const store = transaction.objectStore('profiles');
+                const request = store.add(formData);
+    
+                request.onsuccess = () => {
+                    alert('اطلاعات با موفقیت ذخیره شد');
+                    form.reset();
+                    preview.innerHTML = '';
+                    researchTags.innerHTML = '';
+                    uploadedImageUrl = null;
+                };
+    
+                request.onerror = () => {
+                    alert('خطا در ذخیره اطلاعات');
+                };
+            } catch (error) {
+                console.error('Submission error:', error);
+                alert('خطا در ذخیره اطلاعات');
+            }
+        });
+    });
+    
+    function downloadDatabase() {
+        const request = indexedDB.open("facultyMembersDB", 1);
+    
+        request.onerror = (event) => {
+            console.error("Error opening database:", event.target.error);
+            alert("خطا در باز کردن پایگاه داده");
+        };
+    
+        request.onsuccess = (event) => {
+            const db = event.target.result;
+            const transaction = db.transaction(['profiles'], 'readonly');
+            const store = transaction.objectStore('profiles');
+            const getAll = store.getAll();
+    
+            getAll.onerror = (event) => {
+                console.error("Error reading database:", event.target.error);
+                alert("خطا در خواندن پایگاه داده");
+            };
+    
+            getAll.onsuccess = () => {
+                const data = getAll.result;
+    
+                if (!data || data.length === 0) {
+                    alert("پایگاه داده خالی است");
+                    return;
+                }
+    
+                try {
+                    const json = JSON.stringify(data, null, 2);
+                    const blob = new Blob([json], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+    
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `faculty_members_database_${new Date().toISOString().slice(0,10)}.json`;
+    
+                    document.body.appendChild(a);
+                    a.click();
+    
+                    setTimeout(() => {
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                    }, 100);
+                } catch (error) {
+                    console.error("Error creating download:", error);
+                    alert("خطا در ایجاد فایل دانلود");
+                }
+            };
+        };
+    }
+    </script>
+    </body></html>

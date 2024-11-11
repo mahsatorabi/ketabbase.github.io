@@ -1,0 +1,402 @@
+<html><head> 
+    <base href="#search">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جستجوی اساتید - علم اطلاعات و دانش‌شناسی</title>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Vazirmatn', sans-serif;
+    }
+    
+    body {
+        direction: rtl;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+    }
+    
+    .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 2rem auto;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    }
+    
+    .back-button {
+        background: #95a5a6;
+        color: white;
+        padding: 0.8rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        margin-bottom: 1.5rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .back-button:hover {
+        background: #7f8c8d;
+    }
+    
+    .back-button svg {
+        width: 16px;
+        height: 16px;
+        transform: rotate(180deg);
+    }
+    
+    .search-inputs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .input-group {
+        flex: 1;
+        min-width: 250px;
+    }
+    
+    .input-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #2c3e50;
+    }
+    
+    .search-input {
+        padding: 1rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+    }
+    
+    .search-input:focus {
+        outline: none;
+        border-color: #3498db;
+    }
+    
+    .filters {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+    
+    .filter-select {
+        padding: 0.5rem 1rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 0.9rem;
+    }
+    
+    .research-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+    
+    .research-tag {
+        background: #e1f0fa;
+        padding: 0.3rem 0.8rem;
+        border-radius: 15px;
+        font-size: 0.9rem;
+        color: #2980b9;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .remove-tag {
+        cursor: pointer;
+        color: #c0392b;
+        font-weight: bold;
+    }
+    
+    .results {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .professor-card {
+        background: white;
+        border-radius: 15px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .professor-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .professor-image {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin: 0 auto 1rem;
+        display: block;
+        object-fit: cover;
+        background: #f0f0f0;
+    }
+    
+    .professor-name {
+        text-align: center;
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        color: #2c3e50;
+    }
+    
+    .professor-details {
+        text-align: center;
+        color: #666;
+        font-size: 0.9rem;
+    }
+    
+    .professor-university {
+        color: #3498db;
+        margin-top: 0.5rem;
+        text-align: center;
+    }
+    
+    @media (max-width: 768px) {
+        .search-inputs {
+            flex-direction: column;
+        }
+        
+        .filters {
+            flex-direction: column;
+        }
+        
+        .filter-select {
+            width: 100%;
+        }
+    }
+    
+    .no-results {
+        text-align: center;
+        padding: 2rem;
+        color: #666;
+    }
+    
+    .search-button {
+        background: #3498db;
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 10px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        margin-bottom: 2rem;
+        width: 100%;
+    }
+    
+    .search-button:hover {
+        background: #2980b9;
+    }
+    </style>
+    </head>
+    <body>
+    <div class="container">
+        <button onclick="window.location.href='../main.html'" class="back-button">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+            بازگشت به صفحه اصلی
+        </button>
+    
+        <div class="search-inputs">
+            <div class="input-group">
+                <label class="input-label">نام و نام خانوادگی</label>
+                <input type="text" class="search-input" id="nameInput" placeholder="نام استاد را وارد کنید...">
+            </div>
+            
+            <div class="input-group">
+                <label class="input-label">دانشگاه</label>
+                <select class="filter-select" id="universityFilter">
+                    <option value="">همه دانشگاه‌ها</option>
+                    <option value="tehran">دانشگاه تهران</option>
+                    <option value="ferdowsi">دانشگاه فردوسی مشهد</option>
+                    <option value="beheshti">دانشگاه شهید بهشتی</option>
+                    <option value="tabatabaii">دانشگاه علامه طباطبایی</option>
+                    <option value="alzahra">دانشگاه الزهرا</option>
+                </select>
+            </div>
+            
+            <div class="input-group">
+                <label class="input-label">مرتبه علمی</label>
+                <select class="filter-select" id="rankFilter">
+                    <option value="">همه مرتبه‌های علمی</option>
+                    <option value="استاد تمام">استاد تمام</option>
+                    <option value="دانشیار">دانشیار</option>
+                    <option value="استادیار">استادیار</option>
+                </select>
+            </div>
+            
+            <div class="input-group">
+                <label class="input-label">حوزه پژوهشی</label>
+                <input type="text" class="search-input" id="researchInput" placeholder="حوزه پژوهشی را وارد کنید و Enter بزنید">
+                <div class="research-tags" id="researchTags"></div>
+            </div>
+        </div>
+        
+        <button class="search-button" id="searchButton">جستجو</button>
+        
+        <div class="results" id="searchResults">
+            <!-- Results will be dynamically inserted here -->
+        </div>
+    </div>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const professors = [
+            {
+                id: 'hosseini',
+                name: 'دکتر علی حسینی',
+                rank: 'استاد تمام',
+                university: 'دانشگاه تهران',
+                researchFields: ['بازیابی اطلاعات', 'داده کاوی', 'علم سنجی', 'یادگیری ماشین'],
+                image: 'profile1.jpg'
+            },
+            {
+                id: 'mohammadi',
+                name: 'دکتر فاطمه محمدی',
+                rank: 'دانشیار',
+                university: 'دانشگاه تهران',
+                researchFields: ['مدیریت دانش', 'کتابخانه های دیجیتال', 'وب معنایی'],
+                image: 'profile2.jpg'
+            },
+            {
+                id: 'yousefi',
+                name: 'دکتر سارا یوسفی',
+                rank: 'استاد تمام',
+                university: 'دانشگاه فردوسی مشهد',
+                researchFields: ['مدیریت دانش', 'علم سنجی', 'شبکه های اجتماعی علمی'],
+                image: 'profile3.jpg'
+            },
+            {
+                id: 'nikkhah',
+                name: 'دکتر حسن نیکخواه',
+                rank: 'استاد تمام',
+                university: 'دانشگاه شهید بهشتی',
+                researchFields: ['مدیریت اطلاعات', 'هوش مصنوعی', 'تحلیل محتوا'],
+                image: 'profile4.jpg'
+            },
+            {
+                id: 'badiyi',
+                name: 'دکتر ندا بدیعی',
+                rank: 'استاد تمام',
+                university: 'دانشگاه علامه طباطبایی',
+                researchFields: ['علم سنجی', 'مدیریت دانش'],
+                image: 'profile5.jpg'
+            }
+        ];
+        
+        let selectedResearchFields = new Set();
+        
+        const researchInput = document.getElementById('researchInput');
+        const researchTags = document.getElementById('researchTags');
+        
+        researchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && this.value.trim()) {
+                addResearchField(this.value.trim());
+                this.value = '';
+            }
+        });
+        
+        function addResearchField(field) {
+            if (!selectedResearchFields.has(field)) {
+                selectedResearchFields.add(field);
+                renderResearchTags();
+                filterProfessors();
+            }
+        }
+        
+        window.removeResearchField = function(field) {
+            selectedResearchFields.delete(field);
+            renderResearchTags();
+            filterProfessors();
+        }
+        
+        function renderResearchTags() {
+            researchTags.innerHTML = '';
+            selectedResearchFields.forEach(field => {
+                const tag = document.createElement('div');
+                tag.className = 'research-tag';
+                tag.innerHTML = `
+                    ${field}
+                    <span class="remove-tag" onclick="removeResearchField('${field}')">×</span>
+                `;
+                researchTags.appendChild(tag);
+            });
+        }
+        
+        function filterProfessors() {
+            const nameSearch = document.getElementById('nameInput').value.toLowerCase();
+            const universityFilter = document.getElementById('universityFilter').value;
+            const rankFilter = document.getElementById('rankFilter').value;
+            
+            const filtered = professors.filter(professor => {
+                const matchesName = professor.name.toLowerCase().includes(nameSearch);
+                const matchesUniversity = !universityFilter || professor.university.includes(universityFilter);
+                const matchesRank = !rankFilter || professor.rank === rankFilter;
+                const matchesResearch = selectedResearchFields.size === 0 || 
+                                      [...selectedResearchFields].some(field => 
+                                          professor.researchFields.some(pField => 
+                                              pField.toLowerCase().includes(field.toLowerCase())));
+                
+                return matchesName && matchesUniversity && matchesRank && matchesResearch;
+            });
+            
+            renderResults(filtered);
+        }
+        
+        function renderResults(filteredProfessors) {
+            const resultsContainer = document.getElementById('searchResults');
+            resultsContainer.innerHTML = '';
+            
+            if (filteredProfessors.length === 0) {
+                resultsContainer.innerHTML = '<div class="no-results">نتیجه‌ای یافت نشد</div>';
+                return;
+            }
+            
+            filteredProfessors.forEach(professor => {
+                const card = document.createElement('div');
+                card.className = 'professor-card';
+                card.onclick = () => showProfessorDetails(professor.id);
+                
+                card.innerHTML = `
+                    <img src="${professor.image}" alt="تصویر ${professor.name}" class="professor-image">
+                    <h3 class="professor-name">${professor.name}</h3>
+                    <div class="professor-details">${professor.rank}</div>
+                    <div class="professor-university">${professor.university}</div>
+                `;
+                
+                resultsContainer.appendChild(card);
+            });
+        }
+        
+        // Event listeners
+        document.getElementById('searchButton').addEventListener('click', filterProfessors);
+        document.getElementById('nameInput').addEventListener('input', filterProfessors);
+        document.getElementById('universityFilter').addEventListener('change', filterProfessors);
+        document.getElementById('rankFilter').addEventListener('change', filterProfessors);
+        
+        // Initial render
+        renderResults(professors);
+    });
+    </script>
+    </body></html>
