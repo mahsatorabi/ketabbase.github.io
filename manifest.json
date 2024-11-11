@@ -1,8 +1,8 @@
 {
     "name": "هیات علمی علم اطلاعات",
-    "short_name": "WebApp",
+    "short_name": "IS Faculty Members",
     "description": "سامانه ای برای راحتی دسترسی به اطلاعات اعضای هیات علمی رشته علم اطلاعات و دانش شناسی در دانشگاه های دولتی ایران",
-    "start_url": "main.html",
+    "start_url": "index.html",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#000000",
